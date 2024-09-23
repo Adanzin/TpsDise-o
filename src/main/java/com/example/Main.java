@@ -7,8 +7,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 
-import com.example.dao.Direccion;
-import com.example.dao.Persona;
+import com.example.dao.mysql.AlumnoDAOMySQL;
 
 public class Main
 {
@@ -25,9 +24,9 @@ public class Main
         Persona p2 = new Persona(6,"Milagros",20,d);
         em.persist(p);
         em.persist(p2);*/
-        Persona j = em.find(Persona.class, 1);
+        AlumnoDAOMySQL j = em.find(AlumnoDAOMySQL.class, 1);
         System.out.println(j);
-        List<Persona> personas = em.createQuery("SELECT p FROM Persona p").getResultList();
+        List<AlumnoDAOMySQL> personas = em.createQuery("SELECT p FROM Persona p").getResultList();
         personas.forEach(p -> System.out.println(p));
         em.getTransaction().commit();
         em.close();

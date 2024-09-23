@@ -1,4 +1,4 @@
-package com.example.dao;
+package com.example.modelo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -11,10 +11,8 @@ public class Direccion {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column
+    @Column(nullable = false)
     String ciudad;
-    @Column
-    String calle;
 
     public Direccion() {
     }
@@ -22,7 +20,6 @@ public class Direccion {
     public Direccion(int id, String ciudad, String calle) {
         this.ciudad = ciudad;
         this.id = id;
-        this.calle = calle;
     }
 
     public int getId() {
@@ -37,17 +34,9 @@ public class Direccion {
         this.ciudad = ciudad;
     }
 
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
     @Override
     public String toString() {
-        return "Direccion [id=" + id + ", ciudad=" + ciudad + ", calle=" + calle + "]";
+        return "Direccion [id=" + id + ", ciudad=" + ciudad + "]";
     }
 
      
