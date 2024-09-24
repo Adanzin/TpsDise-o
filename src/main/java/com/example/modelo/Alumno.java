@@ -32,20 +32,18 @@ public class Alumno {
 	@Column(nullable = false)
 	private String genero;
 
-	private int partidas;
+	
 
 	public Alumno() {
 		super();
 	}
 
-	public Alumno(long dNI, String nombre, String apellido, Date fechaNacimiento, String genero,
-            int partidas) {
+	public Alumno(long dNI, String nombre, String apellido, Date fechaNacimiento, String genero) {
         this.dni = dNI;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
-        this.partidas = partidas;
     }
 
 }

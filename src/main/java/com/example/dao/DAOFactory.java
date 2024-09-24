@@ -3,25 +3,25 @@ package com.example.dao;
 import jakarta.persistence.EntityManager;
 
 import com.example.dao.mysql.*;
-import com.example.util.ConnectionFactory;
+import com.example.factory.JPAConnectionFactory;
 
 public class DAOFactory {
 
 	public DAOFactory() {
 	}
 
-	public static AlumnoDAO getPersonaDAO(String type) {
-		if (type.equals(ConnectionFactory.MYSQL)) {
-			EntityManager em = ConnectionFactory.getInstance().connect(ConnectionFactory.MYSQL);
-			return new AlumnoDAOMySQL(em);
-		} else if (type.equals(ConnectionFactory.DERBY)) {
-			// Aca deberia implementar DERBY
-			EntityManager em = ConnectionFactory.getInstance().connect(ConnectionFactory.DERBY);
-			return new AlumnoDAOMySQL(em);
-		} else {
-			throw new IllegalArgumentException("Tipo de DAO no válido: " + type);
-		}
-	}
+	// public static AlumnoDAO getPersonaDAO(String type) {
+	// 	if (type.equals(JPAConnectionFactory.MYSQL)) {
+	// 		//EntityManager em = JPAConnectionFactory.getInstance().connect(JPAConnectionFactory.MYSQL);
+	// 		//return new AlumnoDAOMySQL(em);
+	// 	} else if (type.equals(JPAConnectionFactory.DERBY)) {
+	// 		// Aca deberia implementar DERBY
+	// 		//EntityManager em = JPAConnectionFactory.getInstance().connect(JPAConnectionFactory.DERBY);
+	// 		//return new AlumnoDAOMySQL(em);
+	// 	} else {
+	// 		throw new IllegalArgumentException("Tipo de DAO no válido: " + type);
+	// 	}
+	// }
 
 	// otros métodos para obtener instancias de DAOs
 }

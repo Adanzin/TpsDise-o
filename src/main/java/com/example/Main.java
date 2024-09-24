@@ -8,29 +8,27 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 
 import com.example.dao.mysql.AlumnoDAOMySQL;
+import com.example.factory.ConnectionFactory;
+import com.example.factory.JDBCConnectionFactory;
+import com.example.factory.JPAConnectionFactory;
+import com.example.modelo.Alumno;
+import com.example.utils.Config;
 
 public class Main
 {
+    public static ConnectionFactory getConnectionFactory() {
+        if (Config.getInstance().getProperty("connection.type") == "JPA") {
+            return new JPAConnectionFactory();
+        } else {
+            return new JDBCConnectionFactory();
+        }
+    }
+
     public static void main( String[] args )
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ejemplo");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        /*Direccion d = new Direccion(3,"Tandil","25 de mayo 188");
-        em.persist(d);
-        Direccion d1 = new Direccion(4,"Tandil","San lorenzo 415");
-        em.persist(d1);
-        Persona p = new Persona(5,"Juan",22,d);
-        Persona p2 = new Persona(6,"Milagros",20,d);
-        em.persist(p);
-        em.persist(p2);*/
-        AlumnoDAOMySQL j = em.find(AlumnoDAOMySQL.class, 1);
-        System.out.println(j);
-        List<AlumnoDAOMySQL> personas = em.createQuery("SELECT p FROM Persona p").getResultList();
-        personas.forEach(p -> System.out.println(p));
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+        ConnectionFactory connFactory = getConnectionFactory();
+        connFactory.alumnoRepository().delete(new Alumno());;
+        
     }
 }
 
