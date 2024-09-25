@@ -8,9 +8,11 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Direccion {
+    
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     @Column(nullable = false)
     String ciudad;
 
