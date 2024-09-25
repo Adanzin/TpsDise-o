@@ -1,11 +1,11 @@
 package com.example.factory;
 
-import com.example.repository.jpa.AlumnoRepository;
+import com.example.repository.jpa.AlumnoRepositoryJPA;
 
 public class JDBCConnectionFactory extends ConnectionFactory {
 
     @Override
-    public AlumnoRepository alumnoRepository() {
+    public AlumnoRepositoryJPA alumnoRepository() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'alumnoRepository'");
     }

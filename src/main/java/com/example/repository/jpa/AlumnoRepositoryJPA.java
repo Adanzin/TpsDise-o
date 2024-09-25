@@ -4,16 +4,17 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.modelo.Alumno;
+import com.example.repository.AlumnoRepository;
 import com.example.repository.Repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-public class AlumnoRepository implements Repository<Alumno, Integer> {
+public class AlumnoRepositoryJPA extends AlumnoRepository {
     private EntityManager em;
 
 
-    public AlumnoRepository(EntityManager em){
+    public AlumnoRepositoryJPA(EntityManager em){
         this.em = em;
     }
 
@@ -38,6 +39,10 @@ public class AlumnoRepository implements Repository<Alumno, Integer> {
     @Override
     public void delete(Alumno entity) {
         em.remove(entity);
+    }
+
+    public void metodo(){
+        
     }
 
 }

@@ -7,7 +7,6 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 
-import com.example.dao.mysql.AlumnoDAOMySQL;
 import com.example.factory.ConnectionFactory;
 import com.example.factory.JDBCConnectionFactory;
 import com.example.factory.JPAConnectionFactory;
