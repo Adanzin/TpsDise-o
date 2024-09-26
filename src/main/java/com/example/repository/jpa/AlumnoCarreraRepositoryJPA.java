@@ -7,30 +7,43 @@ import com.example.entity.AlumnoCarrera;
 import com.example.entity.AlumnoCarreraPK;
 import com.example.repository.AlumnoCarreraRepository;
 
+import jakarta.persistence.EntityManager;
+
 public class AlumnoCarreraRepositoryJPA extends AlumnoCarreraRepository {
+
+    private EntityManager em;
 
     @Override
     public AlumnoCarrera save(AlumnoCarrera entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        em.getTransaction().begin();
+        if (entity.getAlumnoCarreraPK() == null)
+            em.persist(entity);
+        else
+            em.merge(entity);
+        em.getTransaction().commit();
+        return entity;
     }
 
     @Override
     public Optional<AlumnoCarrera> findById(AlumnoCarreraPK id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return Optional.ofNullable(em.find(AlumnoCarrera.class, id));
     }
 
     @Override
     public List<AlumnoCarrera> findAll() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return em.createQuery("SELECT ec FROM EstudianteCarrera ec", AlumnoCarrera.class).getResultList();
     }
 
     @Override
     public void delete(AlumnoCarrera entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        em.remove(entity);
     }
+
+    public AlumnoCarreraRepositoryJPA(EntityManager em) {
+        this.em = em;
+    }
+
+    
 
 }

@@ -15,12 +15,47 @@ import jakarta.persistence.OneToMany;
 public class Carrera implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCarrera;
+    private Integer idCarrera;
 
     @Column(unique = true)
-	private String nombreCarrera;
+    private String nombreCarrera;
 
     @OneToMany
     @JoinColumn(name = "idCarrera")
     private List<AlumnoCarrera> alumnoCarrera;
+
+    @Override
+    public String toString() {
+        return "Carrera{" +
+                "idCarrera=" + idCarrera +
+                ", nombreCarrera='" + nombreCarrera + '\'' +
+                ", cantidadAlumnos=" + (alumnoCarrera != null ? alumnoCarrera.size() : 0) +
+                '}';
+    }
+
+    public Integer getIdCarrera() {
+        return idCarrera;
+    }
+
+    public void setIdCarrera(Integer idCarrera) {
+        this.idCarrera = idCarrera;
+    }
+
+    public String getNombreCarrera() {
+        return nombreCarrera;
+    }
+
+    public void setNombreCarrera(String nombreCarrera) {
+        this.nombreCarrera = nombreCarrera;
+    }
+
+    public List<AlumnoCarrera> getAlumnoCarrera() {
+        return alumnoCarrera;
+    }
+
+    public void setAlumnoCarrera(List<AlumnoCarrera> alumnoCarrera) {
+        this.alumnoCarrera = alumnoCarrera;
+    }
+
+    
 }

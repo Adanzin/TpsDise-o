@@ -22,7 +22,7 @@ public class Alumno implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int nroLibreta;
+	private Integer nroLibreta;
 
     @Column(unique = true, nullable = false)
 	private long dni;
@@ -58,11 +58,11 @@ public class Alumno implements Serializable {
         this.genero = genero;
     }
 
-	public int getNroLibreta() {
+	public Integer getNroLibreta() {
 		return nroLibreta;
 	}
 
-	public void setNroLibreta(int nroLibreta) {
+	public void setNroLibreta(Integer nroLibreta) {
 		this.nroLibreta = nroLibreta;
 	}
 

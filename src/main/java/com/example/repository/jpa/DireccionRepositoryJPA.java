@@ -6,7 +6,12 @@ import java.util.Optional;
 import com.example.entity.Direccion;
 import com.example.repository.DireccionRepository;
 
+import jakarta.persistence.EntityManager;
+
 public class DireccionRepositoryJPA extends DireccionRepository{
+
+    //Se obvio la implementacion de esta clase, fue pensada para la relacion de la direccion con el alumno
+    private EntityManager em;
 
     @Override
     public Direccion save(Direccion entity) {
@@ -31,5 +36,11 @@ public class DireccionRepositoryJPA extends DireccionRepository{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
+
+    public DireccionRepositoryJPA(EntityManager em) {
+        this.em = em;
+    }
+
+    
 
 }

@@ -9,6 +9,7 @@ import com.example.repository.AlumnoRepository;
 import com.example.repository.Repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.TypedQuery;
 
 public class AlumnoRepositoryJPA extends AlumnoRepository {
@@ -20,14 +21,18 @@ public class AlumnoRepositoryJPA extends AlumnoRepository {
 
     @Override
     public Alumno save(Alumno entity) {
-        em.persist(entity);
+        em.getTransaction().begin();
+        if (entity.getNroLibreta() == null)
+            em.persist(entity);
+        else
+            em.merge(entity);
+        em.getTransaction().commit();
         return entity;
     }
 
     @Override
     public Optional<Alumno> findById(Integer id) {
-        Alumno al = em.find(Alumno.class, id);
-        return Optional.of(al);
+        return Optional.ofNullable(em.find(Alumno.class, id));
     }
 
     @Override
@@ -40,10 +45,7 @@ public class AlumnoRepositoryJPA extends AlumnoRepository {
     public void delete(Alumno entity) {
         em.remove(entity);
     }
-
-    public void metodo() {
-
-    }
+    
 
     @Override
     public List<Alumno> findAllByFilter(AlumnoFilter alumnoFilter) {
@@ -72,12 +74,33 @@ public class AlumnoRepositoryJPA extends AlumnoRepository {
          jpql.toString(),Alumno.class);
 
          alumnoFilter.getDni().ifPresent(dni -> query.setParameter("dni", dni));
-         alumnoFilter.getNombre().ifPresent(nombre -> System.out.println("entre"+nombre));
-         alumnoFilter.getNombre().ifPresent(nombre -> query.setParameter("nombre", "%" + "tom"+ "%"));
+         alumnoFilter.getNombre().ifPresent(nombre -> query.setParameter("nombre", "%"+nombre+"%"));
          alumnoFilter.getApellido().ifPresent(apellido -> query.setParameter("apellido", "%" + apellido + "%"));
          alumnoFilter.getFechaNacimiento().ifPresent(fecha -> query.setParameter("fecha", fecha));
          alumnoFilter.getGenero().ifPresent(genero -> query.setParameter("genero", genero));
+        return query.getResultList();
+    }
 
+    public List<Alumno> findByIdCarreraAndCiudadOrigen(Integer idCarrera, String ciudadResidencia) {
+
+        String sqlQuery = "SELECT DISTINCT e FROM Alumno e " +
+                "JOIN AlumnoCarrera ec ON (e.nroLibreta = ec.id.nroLibreta) " +
+                "JOIN Direccion d ON (d.id = e.direccion) " +
+                "WHERE ec.id.idCarrera = :idCarrera " +
+                "AND d.ciudad = :ciudad";
+
+        TypedQuery<Alumno> query = em.createQuery(sqlQuery, Alumno.class);
+        query.setParameter("idCarrera", idCarrera);
+        query.setParameter("ciudad", ciudadResidencia);
+        return query.getResultList();
+    }
+
+    public List<Alumno> findAllSortBy(String columnaOrder) {
+
+        String sqlQuery = "SELECT e FROM Alumno e " +
+                "ORDER BY e."+columnaOrder+" ASC";
+
+        TypedQuery<Alumno> query = em.createQuery(sqlQuery, Alumno.class);
         return query.getResultList();
     }
 

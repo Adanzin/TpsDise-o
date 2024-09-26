@@ -11,32 +11,34 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "AlumnoCarrera")
 public class AlumnoCarrera implements Serializable{
     
     @EmbeddedId
     private AlumnoCarreraPK alumnoCarreraPK;
 
     @ManyToOne
-    @MapsId("nroLibreta")
-    @JoinColumn(name = "nroLibreta")
-    private Alumno alumno;
-
-    @ManyToOne
-    @MapsId("idCarrera")
+    @MapsId("idCarrera") // Mapea la clave foránea idCarrera
     @JoinColumn(name = "idCarrera")
     private Carrera carrera;
 
+    @ManyToOne
+    @MapsId("nroLibreta") // Mapea la clave foránea nroLibreta
+    @JoinColumn(name = "nroLibreta")
+    private Alumno alumno;
+
     @Column(nullable = false)
-    private Date fechaInscripcion;
+    private int anioInscripcion;
 
     @Column(nullable = false)
     private boolean finalizada;
 
-    public AlumnoCarrera(AlumnoCarreraPK alumnoCarreraPK, Date fechaInscripcion, boolean finalizada) {
+    public AlumnoCarrera(AlumnoCarreraPK alumnoCarreraPK, int anioInscripcion, boolean finalizada) {
         this.alumnoCarreraPK = alumnoCarreraPK;
-        this.fechaInscripcion = fechaInscripcion;
+        this.anioInscripcion = anioInscripcion;
         this.finalizada = finalizada;
     }
 
@@ -50,12 +52,12 @@ public class AlumnoCarrera implements Serializable{
         this.alumnoCarreraPK = alumnoCarreraPK;
     }
 
-    public Date getFechaInscripcion() {
-        return fechaInscripcion;
+    public int getAnioInscripcion() {
+        return anioInscripcion;
     }
 
-    public void setFechaInscripcion(Date fechaInscripcion) {
-        this.fechaInscripcion = fechaInscripcion;
+    public void setAnioInscripcion(int anioInscripcion) {
+        this.anioInscripcion = anioInscripcion;
     }
 
     public boolean isFinalizada() {
@@ -67,5 +69,4 @@ public class AlumnoCarrera implements Serializable{
     }
 
     
-
 }

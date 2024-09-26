@@ -39,4 +39,16 @@ public class AlumnoRepositoryJDBC extends AlumnoRepository{
         throw new UnsupportedOperationException("Unimplemented method 'findAllByFilter'");
     }
 
+    @Override
+    public List<Alumno> findByIdCarreraAndCiudadOrigen(Integer idCarrera, String ciudadResidencia) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByIdCarreraAndCiudadOrigen'");
+    }
+
+    @Override
+    public List<Alumno> findAllSortBy(String columnaOrder) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAllSortBy'");
+    }
+
 }
