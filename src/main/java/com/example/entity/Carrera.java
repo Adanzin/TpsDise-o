@@ -1,4 +1,4 @@
-package com.example.modelo;
+package com.example.entity;
 
 import java.io.Serializable;
 import java.util.List;

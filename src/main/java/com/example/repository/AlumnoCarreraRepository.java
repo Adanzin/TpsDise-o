@@ -1,7 +1,7 @@
 package com.example.repository;
 
-import com.example.modelo.AlumnoCarrera;
-import com.example.modelo.AlumnoCarreraPK;
+import com.example.entity.AlumnoCarrera;
+import com.example.entity.AlumnoCarreraPK;
 
 public abstract class AlumnoCarreraRepository implements Repository<AlumnoCarrera,AlumnoCarreraPK>{
 

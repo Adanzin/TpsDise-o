@@ -3,7 +3,7 @@ package com.example.repository.jpa;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.modelo.Carrera;
+import com.example.entity.Carrera;
 import com.example.repository.CarreraRepository;
 
 public class CarreraRepositoryJPA extends CarreraRepository {

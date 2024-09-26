@@ -3,7 +3,7 @@ package com.example.repository.jpa;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.modelo.Direccion;
+import com.example.entity.Direccion;
 import com.example.repository.DireccionRepository;
 
 public class DireccionRepositoryJPA extends DireccionRepository{

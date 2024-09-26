@@ -3,8 +3,8 @@ package com.example.repository.jdbc;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.modelo.AlumnoCarrera;
-import com.example.modelo.AlumnoCarreraPK;
+import com.example.entity.AlumnoCarrera;
+import com.example.entity.AlumnoCarreraPK;
 import com.example.repository.AlumnoCarreraRepository;
 
 public class AlumnoCarreraJDBC extends AlumnoCarreraRepository{

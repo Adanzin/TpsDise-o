@@ -3,6 +3,7 @@ package com.example.factory;
 
 
 import com.example.repository.jpa.AlumnoRepositoryJPA;
+import com.example.repository.AlumnoRepository;
 import com.example.utils.Config;
 
 import jakarta.persistence.EntityManager;
@@ -21,8 +22,6 @@ public class JPAConnectionFactory extends ConnectionFactory {
 		String type = "";
 		this.emf = Persistence.createEntityManagerFactory(Config.getInstance().getProperty("jpa.source"));
 		this.em = emf.createEntityManager();
-		this.em.getTransaction().begin();
-		this.em.getTransaction().commit();
 
 	}
 
@@ -32,7 +31,7 @@ public class JPAConnectionFactory extends ConnectionFactory {
 	}
 
 	@Override
-	public AlumnoRepositoryJPA alumnoRepository() {
+	public AlumnoRepository alumnoRepository() {
 		return new AlumnoRepositoryJPA(this.em);
 	}
 }

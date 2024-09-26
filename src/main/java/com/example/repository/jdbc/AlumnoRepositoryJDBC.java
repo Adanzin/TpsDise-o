@@ -3,7 +3,8 @@ package com.example.repository.jdbc;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.modelo.Alumno;
+import com.example.entity.Alumno;
+import com.example.model.AlumnoFilter;
 import com.example.repository.AlumnoRepository;
 
 public class AlumnoRepositoryJDBC extends AlumnoRepository{
@@ -30,6 +31,12 @@ public class AlumnoRepositoryJDBC extends AlumnoRepository{
     public void delete(Alumno entity) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public List<Alumno> findAllByFilter(AlumnoFilter alumnoFilter) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAllByFilter'");
     }
 
 }

@@ -1,7 +1,8 @@
-package com.example.modelo;
+package com.example.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -23,7 +24,7 @@ public class Alumno implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int nroLibreta;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
 	private long dni;
 
 	@Column(nullable = false)
@@ -113,6 +114,19 @@ public class Alumno implements Serializable {
 		this.alumnoCarrera = alumnoCarrera;
 	}
 
-	
+	@Override
+	public String toString() {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    String fechaNacimientoFormatted = (fechaNacimiento != null) ? dateFormat.format(fechaNacimiento) : "N/A";
+    
+    return "Alumno {" +
+            "nroLibreta=" + nroLibreta +
+            ", dni=" + dni +
+            ", nombre='" + nombre + '\'' +
+            ", apellido='" + apellido + '\'' +
+            ", fechaNacimiento=" + fechaNacimientoFormatted +
+            ", genero='" + genero + '\'' +
+            '}';
+}
 
 }
