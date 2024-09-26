@@ -1,20 +1,26 @@
 package com.example.modelo;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
+
+import javax.persistence.OneToMany;
 
 @Entity
-public class Alumno {
+public class Alumno implements Serializable {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int nroLibreta;
 
     @Column(unique = true)
@@ -32,7 +38,12 @@ public class Alumno {
 	@Column(nullable = false)
 	private String genero;
 
-	
+	@OneToMany
+	@JoinColumn(name = "nroLibreta")
+	private List<AlumnoCarrera> alumnoCarrera;
+
+	@OneToOne
+	private Direccion direccion;
 
 	public Alumno() {
 		super();
@@ -45,5 +56,63 @@ public class Alumno {
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
     }
+
+	public int getNroLibreta() {
+		return nroLibreta;
+	}
+
+	public void setNroLibreta(int nroLibreta) {
+		this.nroLibreta = nroLibreta;
+	}
+
+	public long getDni() {
+		return dni;
+	}
+
+	public void setDni(long dni) {
+		this.dni = dni;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public List<AlumnoCarrera> getAlumnoCarrera() {
+		return alumnoCarrera;
+	}
+
+	public void setAlumnoCarrera(List<AlumnoCarrera> alumnoCarrera) {
+		this.alumnoCarrera = alumnoCarrera;
+	}
+
+	
 
 }

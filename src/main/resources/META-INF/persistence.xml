@@ -3,10 +3,12 @@
 
         xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
         version="2.0">
-     <persistence-unit name="Ejemplo" transaction-type="RESOURCE_LOCAL">
+     <persistence-unit name="ejemplo" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>com.example.dao.Persona</class>
-        <class>com.example.dao.Direccion</class>
+        <class>com.example.modelo.Alumno</class>
+        <class>com.example.modelo.Carrera</class>
+        <class>com.example.modelo.AlumnoCarrera</class>
+        <class>com.example.modelo.Direccion</class>
         <properties>
             <!-- JDBC connection properties -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

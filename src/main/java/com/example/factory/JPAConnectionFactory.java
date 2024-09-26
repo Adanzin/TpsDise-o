@@ -21,6 +21,8 @@ public class JPAConnectionFactory extends ConnectionFactory {
 		String type = "";
 		this.emf = Persistence.createEntityManagerFactory(Config.getInstance().getProperty("jpa.source"));
 		this.em = emf.createEntityManager();
+		this.em.getTransaction().begin();
+		this.em.getTransaction().commit();
 
 	}
 

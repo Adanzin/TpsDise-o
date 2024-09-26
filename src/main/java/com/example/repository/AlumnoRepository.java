@@ -1,7 +1,7 @@
 package com.example.repository;
 
-import com.example.model;
+import com.example.modelo.Alumno;
 
 public abstract class AlumnoRepository implements Repository<Alumno, Integer>{
-
+    
 }

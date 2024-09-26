@@ -1,17 +1,32 @@
 package com.example.modelo;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 
 @Entity
-public class AlumnoCarrera {
+public class AlumnoCarrera implements Serializable{
     
     @EmbeddedId
     private AlumnoCarreraPK alumnoCarreraPK;
+
+    @ManyToOne
+    @MapsId("nroLibreta")
+    @JoinColumn(name = "nroLibreta")
+    private Alumno alumno;
+
+    @ManyToOne
+    @MapsId("idCarrera")
+    @JoinColumn(name = "idCarrera")
+    private Carrera carrera;
 
     @Column(nullable = false)
     private Date fechaInscripcion;
