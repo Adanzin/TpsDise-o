@@ -14,8 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
-
-import javax.persistence.OneToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Alumno implements Serializable {
@@ -50,11 +49,11 @@ public class Alumno implements Serializable {
 		super();
 	}
 
-	public Alumno(long dNI, String nombre, String apellido, Date fechaNacimiento, String genero) {
+	public Alumno(long dNI, String nombre, String apellido, String fechaStr, String genero) {
         this.dni = dNI;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.fechaNacimiento = fechaNacimiento;
+        this.fechaNacimiento = fechaStr;
         this.genero = genero;
     }
 

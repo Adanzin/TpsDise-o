@@ -18,7 +18,7 @@ public class AlumnoRepositoryJPA extends AlumnoRepository {
     public AlumnoRepositoryJPA(EntityManager em) {
         this.em = em;
     }
-
+    
     @Override
     public Alumno save(Alumno entity) {
         em.getTransaction().begin();
